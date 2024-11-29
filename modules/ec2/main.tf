@@ -9,3 +9,7 @@ resource "aws_instance" "ec2_instance" {
     Name = var.instance_name
   }
 }
+
+resource "aws_eip" "server_eip" {
+  instance = aws_instance.ec2_instance.id
+}

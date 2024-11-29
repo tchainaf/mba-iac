@@ -5,5 +5,5 @@ output "instance_id" {
 
 output "public_ip" {
   description = "Endereço IP público da instância"
-  value       = aws_instance.ec2_instance.public_ip
+  value       = aws_eip.server_eip.public_ip
 }
