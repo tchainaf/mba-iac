@@ -1,0 +1,19 @@
+- name: EC2 launch template
+  hosts: localhost
+  connection: local
+  tasks:
+  - name: launch instance
+    amazon.aws.ec2_instance:
+      instance_type: t2.micro
+      key_name: iac-ansible
+      image_id: ami-084568db4383264d4
+      region: us-east-1
+      security_groups: 
+        - launch-wizard-1
+      count: 1
+      vpc_subnet_id: subnet-096779b5eebb4e5a1
+      wait: yes
+      network:
+        assign_public_ip: yes
+      tags:
+        Name: ansible_instance
