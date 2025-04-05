@@ -17,7 +17,7 @@ molecule --version
 
 3. Crie uma pasta para criação da pipeline
 ```
-mkdir lab06 && cd lab06
+mkdir ~/files/lab06 && cd ~/files/lab06
 ```
 
 4. Crie um playbook para criar um security group, ajustando os valores de `vpc_id` e `region`
@@ -46,7 +46,7 @@ tree
 #└── security-group.yml
 ```
 
-7. Altere o arquivo `converge.yml` alterando a task a ser executada
+7. Altere o arquivo `converge.yml`, incluindo a task a ser executada
 ```
 cd molecule/default/
 vim converge.yml
@@ -73,7 +73,7 @@ molecule test
 
 Através do log é possível observar que o molecule executou os arquivos `destroy.yml`, `create.yml` e `converge.yml` em ordem, como uma pipeline.
 
-9. Agora vamos integrar com o Github Actions, crie um novo repositório no Github e faça o clone no servidor PRINCIPAL
+9. Agora vamos integrar com o Github Actions, crie um novo repositório no Github e faça o clone no SERVIDOR PRINCIPAL
 ```
 mkdir ~/github && cd ~/github
 git clone <URL do seu repositório git>
