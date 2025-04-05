@@ -1,0 +1,29 @@
+- hosts: ansible_srv
+  gather_facts: False
+
+  pre_tasks:
+   - name: install python 3
+     become: true
+     become_user: root
+     raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3)
+
+  tasks:
+   - name: Ansible apt install nginx
+     apt:
+       name: nginx
+       state: latest
+   - name: start nginx
+     service:
+       name: nginx
+       state: started
+       enabled: yes  # if you want to also enable nginx
+
+   - name: index.html copy CentOS
+     become: true
+     become_user: root
+     template: src=index.html dest=/usr/share/nginx/html/index.html
+
+   - name: index.html copy Ubuntu/Debian
+     become: true
+     become_user: root
+     template: src=index.html dest=/var/www/html/index.nginx-debian.html
